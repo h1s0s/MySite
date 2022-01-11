@@ -36,9 +36,9 @@ public class UserController extends HttpServlet {
 			
 			System.out.println("[" + userDao.insert(userVo) + " 건이 저장되었습니다.]"); ;
 			
-			//WebUtil.redirect(request, response, "/user?action=joinOk");
+			WebUtil.redirect(request, response, "/mysite/user?action=joinOk");
 		} else if("joinOk".equals(act)) {
-			
+			WebUtil.forward(request, response, "/WEB-INF/views/user/joinOk.jsp");
 			
 		} else {
 			System.out.println("파라미터 없음");
