@@ -16,7 +16,8 @@ create table users(
 
 --시퀀스 생성
 create sequence seq_users_no
-increment by 1 start with 1;
+increment by 1 start with 1
+nocache;
 
 --insert문 2개 male, female
 insert into users
