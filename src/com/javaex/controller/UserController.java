@@ -15,10 +15,15 @@ public class UserController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("/user");
 		String act = request.getParameter("action");
 		
 		if("joinForm".equals(act)) {
 			WebUtil.forward(request, response, "/WEB-INF/views/user/joinForm.jsp");
+		} else if("join".equals(act)) {
+			
+		} else {
+			System.out.println("파라미터 없음");
 		}
 	}
 
