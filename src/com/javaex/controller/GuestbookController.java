@@ -1,20 +1,53 @@
 package com.javaex.controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.javaex.dao.GuestbookDao;
+import com.javaex.util.WebUtil;
+import com.javaex.vo.GuestbookVo;
 
-@WebServlet("/Guest")
+
+@WebServlet("/guest")
 public class GuestbookController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("/guest");
+		String act = request.getParameter("action");
 		
+		if("addList".equals(act)) {
+			GuestbookDao guestbookDao = new GuestbookDao();
+			List<GuestbookVo> guestbookList = guestbookDao.getList();
+			
+			request.setAttribute("gList", guestbookList);
+			
+			WebUtil.forward(request, response, "/WEB-INF/views/guestbook/addList.jsp");
+		} else if("add".equals(act)) {
+			String name = request.getParameter("name");
+			String password = request.getParameter("password");
+			String content = request.getParameter("content");
+			
+			GuestbookVo guestbookVo = new GuestbookVo(name, password, content);
+			
+			GuestbookDao guestbookDao = new GuestbookDao();
+			guestbookDao.guestbookInsert(guestbookVo);
+			
+			WebUtil.redirect(request, response, "/mysite/guest?action=addList");
+		} else if("deleteForm".equals(act)) {
+			WebUtil.forward(request, response, "/WEB-INF/views/guestbook/deleteForm.jsp");
+		} else if("delete".equals(act)) {
+			
+		} else {
+			System.out.println("파라미터 없음");
+		}
 		
 	}
 

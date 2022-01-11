@@ -24,12 +24,10 @@ public class GuestbookDao {
 
 	private void getConnection() {
 		try {
-			// 1. JDBC 드라이버 (Oracle) 로딩
 			Class.forName(driver);
 
-			// 2. Connection 얻어오기
 			conn = DriverManager.getConnection(url, id, pw);
-			// System.out.println("접속성공");
+			System.out.println("접속성공");
 
 		} catch (ClassNotFoundException e) {
 			System.out.println("error: 드라이버 로딩 실패 - " + e);
