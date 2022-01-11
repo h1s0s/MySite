@@ -8,9 +8,9 @@ public class TestDao {
 		
 		UserDao userDao = new UserDao();
 		
-		UserVo userVo = new UserVo("ccc","123","한상선","male");
+		UserVo userVo = new UserVo("123","123","한상선","male");
 		
-		userDao.insert(userVo);
+		System.out.println("[" + userDao.insert(userVo) + " 건이 저장되었습니다.]");
 		
 	}
 
