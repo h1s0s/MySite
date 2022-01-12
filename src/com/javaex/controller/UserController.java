@@ -73,7 +73,41 @@ public class UserController extends HttpServlet {
 			session.invalidate();
 			
 			WebUtil.redirect(request, response, "/mysite/main");
-		} else {
+		} else if ("modifyForm".equals(act)){
+			HttpSession session = request.getSession();
+			UserVo authUser = (UserVo)session.getAttribute("authUser");
+			
+			int no = authUser.getNo();
+			//세션에 넘버를 변수에 저장
+			
+			UserDao userDao = new UserDao();
+			UserVo userVo = userDao.getUser(no);
+			
+			request.setAttribute("userVo", userVo);
+			WebUtil.forward(request, response, "/WEB-INF/views/user/modifyForm.jsp");
+		} else if("modify".equals(act)) { 
+			int no = Integer.parseInt(request.getParameter("no"));
+			String id = request.getParameter("id");
+			String password = request.getParameter("password");
+			String name = request.getParameter("name");
+			String gender = request.getParameter("gender");
+			
+			UserVo userVo = new UserVo(no, id, password, name, gender);
+			UserDao userDao = new UserDao();
+			
+			System.out.println(userVo);
+			
+			userDao.Update(userVo);
+			UserVo authVo = new UserVo();
+			authVo.setNo(userVo.getNo());
+			authVo.setName(userVo.getName());
+			
+			HttpSession session = request.getSession(); //지금 세션 값을 줘
+			session.setAttribute("authUser", authVo);//호출할 이름, 넣을 변수
+			System.out.println(authVo);
+			
+			WebUtil.redirect(request, response, "/mysite/main");
+		} else {		
 			System.out.println("파라미터 없음");
 		}
 	}
