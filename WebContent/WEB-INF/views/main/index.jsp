@@ -24,7 +24,7 @@
 			</ul>
 			-->	
 			<ul>
-				<li><a href="" class="btn_s">로그인</a></li>
+				<li><a href="/mysite/user?action=loginForm" class="btn_s">로그인</a></li>
 				<li><a href="" class="btn_s">회원가입</a></li>
 			</ul>
 			
@@ -67,7 +67,7 @@
 							<br>
 							(자유롭게 꾸며보세요!!)<br>
 							<br><br>
-							<a class="" href="">[방명록에 글 남기기]</a>
+							<a class="" href="/mysite/guest?action=addList">[방명록에 글 남기기]</a>
 						</p>	
 					</div>
 					<!-- //greetings -->
