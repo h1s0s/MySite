@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.javaex.dao.UserDao;
 import com.javaex.util.WebUtil;
@@ -52,7 +53,26 @@ public class UserController extends HttpServlet {
 			// 공간에 로그인정보를 담고 관리한다.
 			// 로그인 되어 있지 않으면 null, 로그인 되어 있으면 값이 있음
 			// 모든 코드마다 이 값을 읽게 만들어주기
+			//System.out.println(userDao.insert(authVo)) +"건이 실행되었습니다.");
+			if(authVo == null) {
+				System.out.println("로그인 실패");
+				WebUtil.redirect(request, response, "/mysite/user?action=loginForm");
+				
+			} else {
+				System.out.println("로그인 성공");
+				HttpSession session = request.getSession(); //지금 세션 값을 줘
+				session.setAttribute("authUser", authVo);//호출할 이름, 넣을 변수
+				
+				WebUtil.redirect(request, response, "/mysite/main");
+			}
+		} else if("logout".equals(act)){
+			System.out.println("로그아웃");
 			
+			HttpSession session = request.getSession();
+			session.removeAttribute("authUser");
+			session.invalidate();
+			
+			WebUtil.redirect(request, response, "/mysite/main");
 		} else {
 			System.out.println("파라미터 없음");
 		}

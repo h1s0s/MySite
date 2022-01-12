@@ -27,7 +27,7 @@ public class GuestbookController extends HttpServlet {
 			GuestbookDao guestbookDao = new GuestbookDao();
 			List<GuestbookVo> guestbookList = guestbookDao.getList();
 			
-			request.setAttribute("gList", guestbookList);
+			request.setAttribute("gList", guestbookList);//리퀘스트에 추가로 더 담는다.
 			
 			WebUtil.forward(request, response, "/WEB-INF/views/guestbook/addList.jsp");
 		} else if("add".equals(act)) {
