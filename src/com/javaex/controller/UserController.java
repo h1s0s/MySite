@@ -56,7 +56,7 @@ public class UserController extends HttpServlet {
 			//System.out.println(userDao.insert(authVo)) +"건이 실행되었습니다.");
 			if(authVo == null) {
 				System.out.println("로그인 실패");
-				WebUtil.redirect(request, response, "/mysite/user?action=loginForm");
+				WebUtil.redirect(request, response, "/mysite/user?action=loginForm&result=fail");
 				
 			} else {
 				System.out.println("로그인 성공");
