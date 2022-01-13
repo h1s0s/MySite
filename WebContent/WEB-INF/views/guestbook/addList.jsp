@@ -71,7 +71,6 @@
 						</table>
 						<!-- //guestWrite -->
 						<input type="hidden" name="action" value="add">
-
 					</form>
 					<c:forEach items="${requestScope.gList}" var="vo">
 						<table class="guestRead">
