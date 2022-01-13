@@ -1,12 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.List"%>
-<%@ page import="com.javaex.vo.UserVo"%>
 <%@ page import="com.javaex.vo.GuestbookVo"%>
 <%@ page import="com.javaex.dao.GuestbookDao"%>
 <%
 List<GuestbookVo> guestbookList = (List<GuestbookVo>) request.getAttribute("gList");
-UserVo authUser = (UserVo) session.getAttribute("authUser");
 %>
 
 <!DOCTYPE html>
@@ -15,50 +12,15 @@ UserVo authUser = (UserVo) session.getAttribute("authUser");
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<link href="/mysite/assets/css/mysite.css" rel="stylesheet"
-	type="text/css">
-<link href="/mysite/assets/css/guestbook.css" rel="stylesheet"
-	type="text/css">
+<link href="/mysite/assets/css/mysite.css" rel="stylesheet" type="text/css">
+<link href="/mysite/assets/css/guestbook.css" rel="stylesheet" type="text/css">
 
 </head>
 
 <body>
 	<div id="wrap">
 
-		<div id="header" class="clearfix">
-			<h1>
-				<a href="/mysite/main">MySite</a>
-			</h1>
-			<%
-			if (authUser == null) {
-			%>
-			<ul>
-				<li><a href="/mysite/user?action=loginForm" class="btn_s">로그인</a></li>
-				<li><a href="/mysite/user?action=joinForm" class="btn_s">회원가입</a></li>
-			</ul>
-			<%
-			} else {
-			%>
-			<ul>
-				<li><%=authUser.getName()%>님 안녕하세요^^</li>
-				<li><a href="/mysite/user?action=logout" class="btn_s">로그아웃</a></li>
-				<li><a href="/mysite/user?action=modifyForm" class="btn_s">회원정보수정</a></li>
-			</ul>
-			<%
-			}
-			%>
-		</div>
-		<!-- //header -->
-
-		<div id="nav">
-			<ul class="clearfix">
-				<li><a href="">입사지원서</a></li>
-				<li><a href="">게시판</a></li>
-				<li><a href="">갤러리</a></li>
-				<li><a href="/mysite/guest?action=addList">방명록</a></li>
-			</ul>
-		</div>
-		<!-- //nav -->
+		<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
 
 		<div id="container" class="clearfix">
 			<div id="aside">
@@ -103,8 +65,7 @@ UserVo authUser = (UserVo) session.getAttribute("authUser");
 									<td><input id="input-pass" type="password" name="pass"></td>
 								</tr>
 								<tr>
-									<td colspan="4"><textarea name="content" cols="72"
-											rows="5"></textarea></td>
+									<td colspan="4"><textarea name="content" cols="72" rows="5"></textarea></td>
 								</tr>
 								<tr class="button-area">
 									<td colspan="4" class="text-center"><button type="submit">등록</button></td>
@@ -169,8 +130,7 @@ UserVo authUser = (UserVo) session.getAttribute("authUser");
 		</div>
 		<!-- //container  -->
 
-		<div id="footer">Copyright ⓒ 2020 황일영. All right reserved</div>
-		<!-- //footer -->
+		<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
 	</div>
 	<!-- //wrap -->
 
