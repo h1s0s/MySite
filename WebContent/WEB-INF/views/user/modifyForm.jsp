@@ -100,14 +100,14 @@
 								<span class="form-text">성별</span> 
 								<% if("male".equals(userVo.getGender())){ %>
 								<label for="rdo-male">남</label> 
-								<input type="radio" id="rdo-male" name="" value="male" checked="checked"> 
+								<input type="radio" id="rdo-male" name="gender" value="male" checked="checked"> 
 								<label for="rdo-female">여</label> 
-								<input type="radio" id="rdo-female" name="" value="female" > 
+								<input type="radio" id="rdo-female" name="gender" value="female" > 
 								<% } else { %>
 								<label for="rdo-male">남</label> 
-								<input type="radio" id="rdo-male" name="" value="male" > 
+								<input type="radio" id="rdo-male" name="gender" value="male" > 
 								<label for="rdo-female">여</label> 
-								<input type="radio" id="rdo-female" name="" value="female" checked="checked"> 					
+								<input type="radio" id="rdo-female" name="gender" value="female" checked="checked"> 					
 								<% } %>
 			
 							</div>

@@ -30,6 +30,7 @@ public class GuestbookController extends HttpServlet {
 			request.setAttribute("gList", guestbookList);//리퀘스트에 추가로 더 담는다.
 			
 			WebUtil.forward(request, response, "/WEB-INF/views/guestbook/addList.jsp");
+			
 		} else if("add".equals(act)) {
 			String name = request.getParameter("name");
 			String password = request.getParameter("password");
@@ -41,6 +42,7 @@ public class GuestbookController extends HttpServlet {
 			guestbookDao.guestbookInsert(guestbookVo);
 			
 			WebUtil.redirect(request, response, "/mysite/guest?action=addList");
+			
 		} else if("deleteForm".equals(act)) {
 			WebUtil.forward(request, response, "/WEB-INF/views/guestbook/deleteForm.jsp");
 			
@@ -52,6 +54,7 @@ public class GuestbookController extends HttpServlet {
 			guestbookDao.guestbookDelete(id, password);
 			
 			//WebUtil.redirect(request, response, "/mysite/guest?action=joinForm");
+			
 		} else {
 			System.out.println("파라미터 없음");
 		}
