@@ -40,7 +40,7 @@
 				<!-- //content-head -->
 
 				<div id="guestbook">
-					<form action="" method="">
+					<form action="/mysite/guest" method="get">
 						<table id="guestDelete">
 							<colgroup>
 								<col style="width: 10%;">
@@ -50,12 +50,13 @@
 							</colgroup>
 							<tr>
 								<td>비밀번호</td>
-								<td><input type="password" name="pass"></td>
+								<td><input type="password" name="password" value=""></td>
+								<input type="text" name="no" value="${param.no}">
+								<input type="text" name="action" value="delete">
 								<td class="text-left"><button type="submit">삭제</button></td>
 								<td><a href="/mysite/main">[메인으로 돌아가기]</a></td>
 							</tr>
 						</table>
-						<input type='hidden' name="" value=""> <input type='hidden' name="" value="">
 					</form>
 
 				</div>
@@ -66,7 +67,7 @@
 		</div>
 		<!-- //container  -->
 
-		<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
+		<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 
 	</div>
 	<!-- //wrap -->

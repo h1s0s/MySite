@@ -1,10 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="java.util.List"%>
-<%@ page import="com.javaex.vo.GuestbookVo"%>
-<%@ page import="com.javaex.dao.GuestbookDao"%>
-<%
-List<GuestbookVo> guestbookList = (List<GuestbookVo>) request.getAttribute("gList");
-%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
 <html>
@@ -78,50 +73,24 @@ List<GuestbookVo> guestbookList = (List<GuestbookVo>) request.getAttribute("gLis
 						<input type="hidden" name="action" value="add">
 
 					</form>
-					<%
-					for (int i = 0; i < guestbookList.size(); i++) {
-					%>
-					<table class="guestRead">
-						<colgroup>
-							<col style="width: 10%;">
-							<col style="width: 40%;">
-							<col style="width: 40%;">
-							<col style="width: 10%;">
-						</colgroup>
-						<tr>
-							<td><%=guestbookList.get(i).getNo()%></td>
-							<td><%=guestbookList.get(i).getName()%></td>
-							<td><%=guestbookList.get(i).getRegDate()%></td>
-							<td><a href="">[삭제]</a></td>
-						</tr>
-						<tr>
-							<td colspan=4 class="text-left"><%=guestbookList.get(i).getContent()%></td>
-						</tr>
-					</table>
-					<%
-					}
-					%>
-					<!-- //guestRead -->
-
-					<table class="guestRead">
-						<colgroup>
-							<col style="width: 10%;">
-							<col style="width: 40%;">
-							<col style="width: 40%;">
-							<col style="width: 10%;">
-						</colgroup>
-						<tr>
-							<td>1234555</td>
-							<td>이정재</td>
-							<td>2020-03-03 12:12:12</td>
-							<td><a href="">[삭제]</a></td>
-						</tr>
-						<tr>
-							<td colspan=4 class="text-left">방명록 글입니다. 방명록 글입니다.</td>
-						</tr>
-					</table>
-					<!-- //guestRead -->
-
+					<c:forEach items="${requestScope.gList}" var="vo">
+						<table class="guestRead">
+							<colgroup>
+								<col style="width: 10%;">
+								<col style="width: 40%;">
+								<col style="width: 40%;">
+								<col style="width: 10%;">
+							</colgroup>
+							<tr>
+								<td>${vo.no}</td>
+								<td>${vo.name}</td>
+								<td>${vo.regDate}</td>
+								<td><a href="/mysite/guest?action=hi?no=${vo.no}">[삭제]</a></td>
+							</tr>
+							<tr>
+								<td colspan=4 class="text-left">${vo.content}</td>
+							</tr>
+					</c:forEach>
 				</div>
 				<!-- //guestbook -->
 
@@ -129,8 +98,7 @@ List<GuestbookVo> guestbookList = (List<GuestbookVo>) request.getAttribute("gLis
 			<!-- //content  -->
 		</div>
 		<!-- //container  -->
-
-		<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
+		<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 	</div>
 	<!-- //wrap -->
 
