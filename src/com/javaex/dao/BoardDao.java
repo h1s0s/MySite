@@ -18,7 +18,7 @@ public class BoardDao {
 	ResultSet rs = null;
 
 	private String driver = "oracle.jdbc.driver.OracleDriver";
-	private String url = "jdbc:oracle:thin:@192.168.0.56:1521:xe";
+	private String url = "jdbc:oracle:thin:@172.30.1.55:1521:xe";
 	private String id = "webdb";
 	private String pw = "webdb";
 
@@ -220,7 +220,7 @@ public class BoardDao {
 		close();
 	}
 
-	public void boardUpdate(int num) {
+	public void boardUpdate(BoardVo boardVo) {
 		getConnection();
 
 		try {
@@ -228,21 +228,23 @@ public class BoardDao {
 			// 3. SQL문 준비 / 바인딩 / 실행 // 4.결과처리
 			String query = "";
 			query += " update board ";
-			query += " set title = ? ";
-			query += " where no = ? ";
-			query += " where no = ? ";
+			query += " set    title = ?, ";
+			query += " 		  content = ? ";
+			query += " where  no = ? ";
 
 			// 쿼리
 			pstmt = conn.prepareStatement(query);
 
 			// 바인딩
-			pstmt.setInt(1, num);
+			pstmt.setString(1, boardVo.getTitle());
+			pstmt.setString(2, boardVo.getContent());
+			pstmt.setInt(3, boardVo.getNo());
 
 			// 실행
 			int count = pstmt.executeUpdate();
 
 			// 4.결과처리
-			System.out.println("[" + count + "건 삭제되었습니다.(Board)]");
+			System.out.println("[" + count + "건 수정되었습니다.(Board)]");
 
 		} catch (SQLException e) {
 			System.out.println("error:" + e);

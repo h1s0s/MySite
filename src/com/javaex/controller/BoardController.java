@@ -91,8 +91,9 @@ public class BoardController extends HttpServlet {
 			String content = request.getParameter("content");
 			
 			BoardDao boardDao = new BoardDao();
-			
-			boardDao.boardUpdate(no);
+			BoardVo boardVo = new BoardVo(no, title, content);
+			System.out.println(boardVo);
+			boardDao.boardUpdate(boardVo);
 			
 			WebUtil.redirect(request, response, "/mysite/board?action=list");
 		} else {

@@ -20,6 +20,11 @@ public class BoardVo {
 		this.content = content;
 		this.userNo = userNo;
 	}
+	public BoardVo(int no, String title, String content) {
+		this.no = no;
+		this.title = title;
+		this.content = content;
+	}
 	public BoardVo(int no, String title, String content, int hit, String regDate, int userNo) {
 		this.no = no;
 		this.title = title;
