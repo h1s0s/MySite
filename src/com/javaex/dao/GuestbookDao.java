@@ -18,7 +18,7 @@ public class GuestbookDao {
 	ResultSet rs = null;
 
 	private String driver = "oracle.jdbc.driver.OracleDriver";
-	private String url = "jdbc:oracle:thin:@192.168.0.19:1521:xe";
+	private String url = "jdbc:oracle:thin:@192.168.0.56:1521:xe";
 	private String id = "webdb";
 	private String pw = "webdb";
 
@@ -37,7 +37,6 @@ public class GuestbookDao {
 	}
 
 	public void close() {
-		// 5. 자원정리
 		try {
 			if (rs != null) {
 				rs.close();
@@ -130,7 +129,6 @@ public class GuestbookDao {
 		getConnection();
 
 		try {
-
 			// 3. SQL문 준비 / 바인딩 / 실행 // 4.결과처리
 			String query = "";
 			query += " delete guestbook ";

@@ -17,7 +17,7 @@ public class UserDao {
 	ResultSet rs = null;
 
 	private String driver = "oracle.jdbc.driver.OracleDriver";
-	private String url = "jdbc:oracle:thin:@192.168.0.19:1521:xe";
+	private String url = "jdbc:oracle:thin:@192.168.0.56:1521:xe";
 	private String id = "webdb";
 	private String pw = "webdb";
 
