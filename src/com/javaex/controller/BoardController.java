@@ -56,6 +56,7 @@ public class BoardController extends HttpServlet {
 			System.out.println("action > read");
 			
 			int no = Integer.parseInt(request.getParameter("no"));
+			
 			BoardDao boardDao = new BoardDao();
 			
 			BoardVo boardVo = boardDao.getBoard(no);
@@ -79,7 +80,6 @@ public class BoardController extends HttpServlet {
 			BoardDao boardDao = new BoardDao();
 			
 			BoardVo boardVo = boardDao.getBoard(no);
-			System.out.println(boardVo);
 			request.setAttribute("boardVo", boardVo);
 			
 			WebUtil.forward(request, response, "/WEB-INF/views/board/modifyForm.jsp");
@@ -92,7 +92,6 @@ public class BoardController extends HttpServlet {
 			
 			BoardDao boardDao = new BoardDao();
 			BoardVo boardVo = new BoardVo(no, title, content);
-			System.out.println(boardVo);
 			boardDao.boardUpdate(boardVo);
 			
 			WebUtil.redirect(request, response, "/mysite/board?action=list");

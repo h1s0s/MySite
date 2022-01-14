@@ -101,6 +101,7 @@ public class BoardDao {
 	public BoardVo getBoard(int num) {
 		BoardVo boardVo = null;
 		String query = null;
+		int userNo = 0;
 		getConnection();
 		try {
 			// SQL문 준비
@@ -114,7 +115,7 @@ public class BoardDao {
 			query += "          bo.user_no user_no";
 			query += " from     board bo, users us ";
 			query += " where    bo.user_no = us.no ";
-			query += " and		bo.user_no = ? ";
+			query += " and		bo.no = ? ";
 
 			// 쿼리
 			pstmt = conn.prepareStatement(query);
@@ -124,7 +125,7 @@ public class BoardDao {
 			
 			// 실행
 			rs = pstmt.executeQuery();
-
+			
 			// 결과처리
 			while (rs.next()) {
 				int no = rs.getInt("no");
@@ -132,12 +133,10 @@ public class BoardDao {
 				String content = rs.getString("content");
 				int hit = rs.getInt("hit");
 				String regDate = rs.getString("reg_date");
-				int userNo = rs.getInt("user_no");
+				userNo = rs.getInt("user_no");
 				String name = rs.getString("name");
 				
 				boardVo = new BoardVo(no, title, content, hit, regDate, userNo, name);
-				
-				System.out.println(boardVo+"(dao)");
 			}
 			
 			// SQL문 준비
@@ -150,11 +149,14 @@ public class BoardDao {
 			pstmt = conn.prepareStatement(query);
 			
 			// 바인딩
-			pstmt.setInt(1, num);
+			pstmt.setInt(1, userNo);
 			
 			// 실행
 			int count = pstmt.executeUpdate();
 
+			// 결과
+			System.out.println("["+count+"건 실행되었습니다.(Board)]");
+			
 		} catch (SQLException e) {
 			System.out.println("error:" + e);
 		}

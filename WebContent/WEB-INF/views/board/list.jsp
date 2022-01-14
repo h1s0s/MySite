@@ -64,7 +64,7 @@
 								<c:forEach items="${requestScope.boardList}" var="vo">
 									<tr>
 										<td>${vo.no}</td>
-										<td class="text-left"><a href="/mysite/board?action=read&no=${vo.userNo}">${vo.title}</a></td>
+										<td class="text-left"><a href="/mysite/board?action=read&no=${vo.no}">${vo.title}</a></td>
 										<td>${vo.name}</td>
 										<td>${vo.hit}</td>
 										<td>${vo.regDate}</td>

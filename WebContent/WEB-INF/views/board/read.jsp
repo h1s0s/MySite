@@ -71,7 +71,7 @@
 								</span>
 							</div>
 							<c:if test="${(sessionScope.authUser.no)==(requestScope.boardVo.userNo)}">
-								<a id="btn_modify" href="/mysite/board?action=modifyForm&no=${requestScope.boardVo.userNo}">수정</a> 
+								<a id="btn_modify" href="/mysite/board?action=modifyForm&no=${requestScope.boardVo.no}">수정</a> 
 							</c:if>
 							<a id="btn_modify" href="/mysite/board?action=list">목록</a>
 							
