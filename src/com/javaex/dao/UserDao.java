@@ -17,11 +17,9 @@ public class UserDao {
 	ResultSet rs = null;
 
 	private String driver = "oracle.jdbc.driver.OracleDriver";
-	private String url = "jdbc:oracle:thin:@172.30.1.51:1521:xe";
+	private String url = "jdbc:oracle:thin:@192.168.0.19:1521:xe";
 	private String id = "webdb";
 	private String pw = "webdb";
-
-	// 메소드 g/s
 
 	// 메소드 일반
 	private void getConnection() {
@@ -92,7 +90,7 @@ public class UserDao {
 	public UserVo getUser(String id, String password) {
 		UserVo userVo = null;
 		getConnection();
-		
+
 		try {
 			// 문자열
 			String query = "";
@@ -101,26 +99,26 @@ public class UserDao {
 			query += " from            users ";
 			query += " where id =      ? ";
 			query += " and password =  ? ";
-	
+
 			// 문자열을 쿼리문으로
 			pstmt = conn.prepareStatement(query);
-	
+
 			// 바인딩
 			pstmt.setString(1, id);
 			pstmt.setString(2, password);
 
 			// 실행
 			rs = pstmt.executeQuery();
-		
+
 			// 결과처리
-			while(rs.next()) {
+			while (rs.next()) {
 				int no = rs.getInt("no");
 				String name = rs.getString("name");
-				
+
 				userVo = new UserVo();
 				userVo.setNo(no);
 				userVo.setName(name);
-				
+
 			}
 		} catch (SQLException e) {
 			System.out.println("error:" + e);
@@ -128,11 +126,12 @@ public class UserDao {
 		close();
 		return userVo;
 	}
-	//회원정보 가져오기(수정용)
+
+	// 회원정보 가져오기(수정용)
 	public UserVo getUser(int num) {
 		UserVo userVo = null;
 		getConnection();
-		
+
 		try {
 			// 문자열
 			String query = "";
@@ -143,24 +142,24 @@ public class UserDao {
 			query += "         gender ";
 			query += " from    users ";
 			query += " where   no=? ";
-	
+
 			// 문자열을 쿼리문으로
 			pstmt = conn.prepareStatement(query);
-	
+
 			// 바인딩
 			pstmt.setInt(1, num);
 
 			// 실행
 			rs = pstmt.executeQuery();
-		
+
 			// 결과처리
-			while(rs.next()) {
+			while (rs.next()) {
 				int no = rs.getInt("no");
 				String id = rs.getString("id");
 				String password = rs.getString("password");
 				String name = rs.getString("name");
 				String gender = rs.getString("gender");
-				
+
 				userVo = new UserVo(no, id, password, name, gender);
 			}
 		} catch (SQLException e) {

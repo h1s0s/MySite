@@ -24,14 +24,15 @@ public class GuestbookController extends HttpServlet {
 		String act = request.getParameter("action");
 		
 		if("addList".equals(act)) {
+			System.out.println("addList");
 			GuestbookDao guestbookDao = new GuestbookDao();
 			List<GuestbookVo> guestbookList = guestbookDao.getList();
-			System.out.println(guestbookList);
 			request.setAttribute("gList", guestbookList);//리퀘스트에 추가로 더 담는다.
 			
 			WebUtil.forward(request, response, "/WEB-INF/views/guestbook/addList.jsp");
 			
 		} else if("add".equals(act)) {
+			System.out.println("add");
 			String name = request.getParameter("name");
 			String password = request.getParameter("password");
 			String content = request.getParameter("content");
@@ -42,20 +43,20 @@ public class GuestbookController extends HttpServlet {
 			guestbookDao.guestbookInsert(guestbookVo);
 			
 			WebUtil.redirect(request, response, "/mysite/guest?action=addList");
-		} else if("hi".equals(act)) {
+		} else if("deleteForm".equals(act)) {
+			System.out.println("deleteForm");
 			WebUtil.forward(request, response, "/WEB-INF/views/guestbook/deleteForm.jsp");
 		} else if("delete".equals(act)) {
-			int id = Integer.parseInt(request.getParameter("id"));
+			System.out.println("delete");
+			int no = Integer.parseInt(request.getParameter("no"));
 			String password = request.getParameter("password");
-			
 			GuestbookDao guestbookDao = new GuestbookDao();
-			guestbookDao.guestbookDelete(id, password);
+			guestbookDao.guestbookDelete(no, password);
 			
-			//WebUtil.redirect(request, response, "/mysite/guest?action=joinForm");
+			WebUtil.redirect(request, response, "/mysite/guest?action=addList");
 			
 		} else {
 			System.out.println("파라미터 없음");
-			WebUtil.forward(request, response, "/WEB-INF/views/guestbook/deleteForm.jsp");
 		}
 		
 	}

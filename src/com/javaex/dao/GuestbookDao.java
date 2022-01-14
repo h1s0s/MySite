@@ -18,7 +18,7 @@ public class GuestbookDao {
 	ResultSet rs = null;
 
 	private String driver = "oracle.jdbc.driver.OracleDriver";
-	private String url = "jdbc:oracle:thin:@172.30.1.51:1521:xe";
+	private String url = "jdbc:oracle:thin:@192.168.0.19:1521:xe";
 	private String id = "webdb";
 	private String pw = "webdb";
 
@@ -128,12 +128,12 @@ public class GuestbookDao {
 
 	public void guestbookDelete(int num, String password) {
 		getConnection();
-		
+
 		try {
-			
+
 			// 3. SQL문 준비 / 바인딩 / 실행 // 4.결과처리
 			String query = "";
-			query += " delete from guestbook ";
+			query += " delete guestbook ";
 			query += " where no = ? ";
 			query += " and password = ? ";
 
@@ -150,12 +150,9 @@ public class GuestbookDao {
 			// 4.결과처리
 			System.out.println("[" + count + "건 삭제되었습니다.]");
 
-			} catch (SQLException e) {
-				System.out.println("error:" + e);
-			}
+		} catch (SQLException e) {
+			System.out.println("error:" + e);
+		}
 		close();
 	}
 }
-
-
-
