@@ -17,89 +17,66 @@
 
 		<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
 
-		<div id="container" class="clearfix">
-			<div id="aside">
-				<h2>방명록</h2>
-				<ul>
-					<li>일반방명록</li>
-					<li>ajax방명록</li>
-				</ul>
-			</div>
-			<!-- //aside -->
+		<jsp:include page="/WEB-INF/views/include/asideGuest.jsp"></jsp:include>
 
-			<div id="content">
+		<div id="content">
 
-				<div id="content-head" class="clearfix">
-					<h3>일반방명록</h3>
-					<div id="location">
-						<ul>
-							<li>홈</li>
-							<li>방명록</li>
-							<li class="last">일반방명록</li>
-						</ul>
-					</div>
-				</div>
-				<!-- //content-head -->
-
-				<div id="guestbook">
-					<form action="/mysite/guest" method="get">
-						<table id="guestAdd">
-							<colgroup>
-								<col style="width: 70px;">
-								<col>
-								<col style="width: 70px;">
-								<col>
-							</colgroup>
-							<tbody>
-								<tr>
-									<th><label class="form-text" for="input-uname">이름</label></th>
-									<td><input id="input-uname" type="text" name="name"></td>
-									<th><label class="form-text" for="input-pass">패스워드</label></th>
-									<td><input id="input-pass" type="password" name="password"></td>
-								</tr>
-								<tr>
-									<td colspan="4"><textarea name="content" cols="72" rows="5"></textarea></td>
-								</tr>
-								<tr class="button-area">
-									<td colspan="4" class="text-center"><button type="submit">등록</button></td>
-								</tr>
-							</tbody>
-
-						</table>
-						<!-- //guestWrite -->
-						<input type="hidden" name="action" value="add">
-						<input type="hidden" name="action" value="add">
-					</form>
-					<c:forEach items="${requestScope.gList}" var="vo">
-						<table class="guestRead">
-							<colgroup>
-								<col style="width: 10%;">
-								<col style="width: 40%;">
-								<col style="width: 40%;">
-								<col style="width: 10%;">
-							</colgroup>
+			<div id="guestbook">
+				<form action="/mysite/guest" method="get">
+					<table id="guestAdd">
+						<colgroup>
+							<col style="width: 70px;">
+							<col>
+							<col style="width: 70px;">
+							<col>
+						</colgroup>
+						<tbody>
 							<tr>
-								<td>${vo.no}</td>
-								<td>${vo.name}</td>
-								<td>${vo.regDate}</td>
-								<td><a href="/mysite/guest?action=deleteForm&no=${vo.no}">[삭제]</a></td>
+								<th><label class="form-text" for="input-uname">이름</label></th>
+								<td><input id="input-uname" type="text" name="name"></td>
+								<th><label class="form-text" for="input-pass">패스워드</label></th>
+								<td><input id="input-pass" type="password" name="password"></td>
 							</tr>
 							<tr>
-								<td colspan=4 class="text-left">${vo.content}</td>
+								<td colspan="4"><textarea name="content" cols="72" rows="5"></textarea></td>
 							</tr>
-						</table>
-					</c:forEach>
-					
-				</div>
-				<!-- //guestbook -->
+							<tr class="button-area">
+								<td colspan="4" class="text-center"><button type="submit">등록</button></td>
+							</tr>
+						</tbody>
+
+					</table>
+					<!-- //guestWrite -->
+					<input type="hidden" name="action" value="add"> <input type="hidden" name="action" value="add">
+				</form>
+				<c:forEach items="${requestScope.gList}" var="vo">
+					<table class="guestRead">
+						<colgroup>
+							<col style="width: 10%;">
+							<col style="width: 40%;">
+							<col style="width: 40%;">
+							<col style="width: 10%;">
+						</colgroup>
+						<tr>
+							<td>${vo.no}</td>
+							<td>${vo.name}</td>
+							<td>${vo.regDate}</td>
+							<td><a href="/mysite/guest?action=deleteForm&no=${vo.no}">[삭제]</a></td>
+						</tr>
+						<tr>
+							<td colspan=4 class="text-left">${vo.content}</td>
+						</tr>
+					</table>
+				</c:forEach>
 
 			</div>
-			<!-- //content  -->
+			<!-- //guestbook -->
+
 		</div>
-		<!-- //container  -->
-		<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
-		
+		<!-- //content  -->
 	</div>
+	<!-- //container  -->
+	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 	<!-- //wrap -->
 </body>
 

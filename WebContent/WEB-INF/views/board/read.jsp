@@ -17,78 +17,69 @@
 
 		<c:import url="/WEB-INF/views/include/header.jsp"></c:import>
 
-		<div id="container" class="clearfix">
-			<div id="aside">
-				<h2>게시판</h2>
-				<ul>
-					<li><a href="">일반게시판</a></li>
-					<li><a href="">댓글게시판</a></li>
-				</ul>
-			</div>
-			<!-- //aside -->
+		<c:import url="/WEB-INF/views/include/asideBoard.jsp"></c:import>
+		<!-- //aside -->
 
-			<div id="content">
+		<div id="content">
 
-				<div id="content-head">
-					<h3>게시판</h3>
-					<div id="location">
-						<ul>
-							<li>홈</li>
-							<li>게시판</li>
-							<li class="last">일반게시판</li>
-						</ul>
-					</div>
-					<div class="clear"></div>
+			<div id="content-head">
+				<h3>게시판</h3>
+				<div id="location">
+					<ul>
+						<li>홈</li>
+						<li>게시판</li>
+						<li class="last">일반게시판</li>
+					</ul>
 				</div>
-				<!-- //content-head -->
-
-				<div id="board">
-					<div id="read">
-						<form action="#" method="get">
-							<!-- 작성자 -->
-							<div class="form-group">
-								<span class="form-text">작성자</span> <span class="form-value">${requestScope.boardVo.name}</span>
-							</div>
-
-							<!-- 조회수 -->
-							<div class="form-group">
-								<span class="form-text">조회수</span> <span class="form-value">${requestScope.boardVo.hit}</span>
-							</div>
-
-							<!-- 작성일 -->
-							<div class="form-group">
-								<span class="form-text">작성일</span> <span class="form-value">${requestScope.boardVo.regDate}</span>
-							</div>
-
-							<!-- 제목 -->
-							<div class="form-group">
-								<span class="form-text">제 목</span> <span class="form-value">${requestScope.boardVo.title}</span>
-							</div>
-
-							<!-- 내용 -->
-							<div id="txt-content">
-								<span class="form-value">${requestScope.boardVo.content}
-								</span>
-							</div>
-							<c:if test="${(sessionScope.authUser.no)==(requestScope.boardVo.userNo)}">
-								<a id="btn_modify" href="/mysite/board?action=modifyForm&no=${requestScope.boardVo.no}">수정</a> 
-							</c:if>
-							<a id="btn_modify" href="/mysite/board?action=list">목록</a>
-							
-						</form>
-						<!-- //form -->
-					</div>
-					<!-- //read -->
-				</div>
-				<!-- //board -->
+				<div class="clear"></div>
 			</div>
-			<!-- //content  -->
+			<!-- //content-head -->
 
+			<div id="board">
+				<div id="read">
+					<form action="#" method="get">
+						<!-- 작성자 -->
+						<div class="form-group">
+							<span class="form-text">작성자</span> <span class="form-value">${requestScope.boardVo.name}</span>
+						</div>
+
+						<!-- 조회수 -->
+						<div class="form-group">
+							<span class="form-text">조회수</span> <span class="form-value">${requestScope.boardVo.hit}</span>
+						</div>
+
+						<!-- 작성일 -->
+						<div class="form-group">
+							<span class="form-text">작성일</span> <span class="form-value">${requestScope.boardVo.regDate}</span>
+						</div>
+
+						<!-- 제목 -->
+						<div class="form-group">
+							<span class="form-text">제 목</span> <span class="form-value">${requestScope.boardVo.title}</span>
+						</div>
+
+						<!-- 내용 -->
+						<div id="txt-content">
+							<span class="form-value">${requestScope.boardVo.content} </span>
+						</div>
+						<c:if test="${(sessionScope.authUser.no)==(requestScope.boardVo.userNo)}">
+							<a id="btn_modify" href="/mysite/board?action=modifyForm&no=${requestScope.boardVo.no}">수정</a>
+						</c:if>
+						<a id="btn_modify" href="/mysite/board?action=list">목록</a>
+
+					</form>
+					<!-- //form -->
+				</div>
+				<!-- //read -->
+			</div>
+			<!-- //board -->
 		</div>
-		<!-- //container  -->
+		<!-- //content  -->
 
-		<c:import url="/WEB-INF/views/include/footer.jsp"></c:import>
 	</div>
+	<!-- //container  -->
+
+	<c:import url="/WEB-INF/views/include/footer.jsp"></c:import>
 	<!-- //wrap -->
 
 </body>
