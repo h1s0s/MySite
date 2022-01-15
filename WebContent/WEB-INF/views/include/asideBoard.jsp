@@ -2,7 +2,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
-<div id="container" class="clearfix">
 	<div id="aside">
 		<h2>게시판</h2>
 		<ul>
@@ -10,4 +9,3 @@
 			<li><a href="">댓글게시판</a></li>
 		</ul>
 	</div>
-</div>
