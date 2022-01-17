@@ -18,7 +18,7 @@ public class BoardDao {
 	ResultSet rs = null;
 
 	private String driver = "oracle.jdbc.driver.OracleDriver";
-	private String url = "jdbc:oracle:thin:@192.168.0.56:1521:xe";
+	private String url = "jdbc:oracle:thin:@192.168.0.14:1521:xe";
 	private String id = "webdb";
 	private String pw = "webdb";
 
@@ -101,30 +101,10 @@ public class BoardDao {
 	//1개 게시글 가져오기(read)
 	public BoardVo getBoard(int num) {
 		BoardVo boardVo = null;
-		String query = null;
 		int userNo = 0;
 		getConnection();
 		try {
-			// SQL문 준비
-			query = "";
-			query += " update  board ";
-			query += " set     hit = hit+1 ";
-			query += " where   no = ? ";
-
-			// 쿼리
-			pstmt = conn.prepareStatement(query);
-			
-			// 바인딩
-			pstmt.setInt(1, num);
-			
-			// 실행
-			int count = pstmt.executeUpdate();
-			
-			// 결과
-			System.out.println("["+count+"건 실행되었습니다.(Board)]");
-			
-			// SQL문 준비
-			query = "";
+			String query = "";
 			query += " select   us.name name, ";
 			query += "          bo.no no, ";
 			query += "          bo.title title, ";
@@ -164,6 +144,35 @@ public class BoardDao {
 
 		close();
 		return boardVo;
+	}
+	
+	//조회수 올리기
+	public void hitPlus(int num) {
+		getConnection();
+		try {
+			// SQL문 준비
+			String query = "";
+			query += " update  board ";
+			query += " set     hit = hit+1 ";
+			query += " where   no = ? ";
+
+			// 쿼리
+			pstmt = conn.prepareStatement(query);
+			
+			// 바인딩
+			pstmt.setInt(1, num);
+			
+			// 실행
+			int count = pstmt.executeUpdate();
+			
+			// 결과
+			System.out.println("["+count+"건 실행되었습니다.(Board)]");
+
+		} catch (SQLException e) {
+			System.out.println("error:" + e);
+		}
+
+		close();
 	}
 	public void boardInsert(BoardVo boardVo) {
 
