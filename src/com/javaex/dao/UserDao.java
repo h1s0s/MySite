@@ -17,7 +17,7 @@ public class UserDao {
 	ResultSet rs = null;
 
 	private String driver = "oracle.jdbc.driver.OracleDriver";
-	private String url = "jdbc:oracle:thin:@192.168.219.157:1521:xe";
+	private String url = "jdbc:oracle:thin:@192.168.0.56:1521:xe";
 	private String id = "webdb";
 	private String pw = "webdb";
 
@@ -27,6 +27,7 @@ public class UserDao {
 			Class.forName(driver);
 
 			conn = DriverManager.getConnection(url, id, pw);
+			System.out.println("접속성공(User)");
 
 		} catch (ClassNotFoundException e) {
 			System.out.println("error: 드라이버 로딩 실패 - " + e);

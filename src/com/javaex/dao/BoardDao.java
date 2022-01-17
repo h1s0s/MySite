@@ -18,7 +18,7 @@ public class BoardDao {
 	ResultSet rs = null;
 
 	private String driver = "oracle.jdbc.driver.OracleDriver";
-	private String url = "jdbc:oracle:thin:@192.168.219.157:1521:xe";
+	private String url = "jdbc:oracle:thin:@192.168.0.56:1521:xe";
 	private String id = "webdb";
 	private String pw = "webdb";
 
@@ -28,7 +28,7 @@ public class BoardDao {
 			Class.forName(driver);
 
 			conn = DriverManager.getConnection(url, id, pw);
-			System.out.println("접속성공");
+			System.out.println("접속성공(Board)");
 
 		} catch (ClassNotFoundException e) {
 			System.out.println("error: 드라이버 로딩 실패 - " + e);
@@ -144,7 +144,7 @@ public class BoardDao {
 			query = "";
 			query += " update  board ";
 			query += " set     hit = hit+1 ";
-			query += " where   user_no = ? ";
+			query += " where   no = ? ";
 
 			// 쿼리
 			pstmt = conn.prepareStatement(query);
