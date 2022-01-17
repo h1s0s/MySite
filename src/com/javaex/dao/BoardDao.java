@@ -105,7 +105,6 @@ public class BoardDao {
 		int userNo = 0;
 		getConnection();
 		try {
-			System.out.println("num"+num);
 			// SQL문 준비
 			query = "";
 			query += " update  board ";
@@ -131,7 +130,7 @@ public class BoardDao {
 			query += "          bo.title title, ";
 			query += "          bo.content content, ";
 			query += "          bo.hit hit, ";
-			query += "          to_char(bo.reg_date, 'YYYY-MM-DD HH:MI') reg_date, ";
+			query += "          to_char(bo.reg_date, 'YY-MM-DD HH:MI') reg_date, ";
 			query += "          bo.user_no user_no";
 			query += " from     board bo, users us ";
 			query += " where    bo.user_no = us.no ";
