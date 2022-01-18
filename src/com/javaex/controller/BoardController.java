@@ -34,8 +34,14 @@ public class BoardController extends HttpServlet {
 			WebUtil.forward(request, response, "/WEB-INF/views/board/list.jsp");
 		} else if ("writeForm".equals(act)) {// 게시글 쓰기 폼
 			System.out.println("action > writeForm");
-
-			WebUtil.forward(request, response, "/WEB-INF/views/board/writeForm.jsp");
+			
+			HttpSession session = request.getSession();
+			UserVo authUser = (UserVo)session.getAttribute("authUser");
+			if(authUser != null) {
+				WebUtil.forward(request, response, "/WEB-INF/views/board/writeForm.jsp");
+			} else {
+				WebUtil.redirect(request, response, "/mysite/main");
+			}
 		} else if ("write".equals(act)) {// 게시글 쓰기
 			System.out.println("action > write");
 
